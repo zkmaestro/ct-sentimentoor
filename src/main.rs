@@ -3,6 +3,7 @@ extern crate serde_json;
 use std::path::Path;
 
 mod config;
+mod twitter;
 
 const CONFIG_FILE: &str = "./sentimentoor.json";
 
@@ -14,6 +15,5 @@ fn main() {
         None => panic!("Cannot find config file"),
     };
 
-    let twitter_api_key = config.twitter_api_key;
-    let twitter_api_secret = config.twitter_api_secret;
+    twitter::get_my_followers(config.twitter_bearer_token);
 }
