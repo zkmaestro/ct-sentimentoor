@@ -1,19 +1,20 @@
-extern crate serde_json;
-
-use std::path::Path;
+use reqwest::Error;
 
 mod config;
+use crate::config::Config;
+
 mod twitter;
+use crate::twitter::TwitterUser;
 
-const CONFIG_FILE: &str = "./sentimentoor.json";
-
-fn main() {
-    let conf_path = Path::new(CONFIG_FILE);
-
-    let config = match config::Config::read_config(&conf_path) {
-        Some(v) => v,
-        None => panic!("Cannot find config file"),
-    };
-
-    twitter::get_my_followers(config.twitter_bearer_token);
+#[tokio::main]
+async fn main() -> Result<(), Error> {
+    let config = Config::new().unwrap();
+    let bearer_token = config.twitter_bearer_token;
+    let list_id = config.twitter_list_id;
+    let list_members: Vec<TwitterUser> = twitter::get_list_members(bearer_token, list_id).await?;
+    println!("There are {} twitter members in the list", list_members.len());
+    for twitter_user in list_members {
+        println!("Twitter User = {:?}", twitter_user);
+    }
+    Ok(())
 }

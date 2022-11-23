@@ -1,3 +1,4 @@
 {
-	"twitter_bearer_token: "<twitter_bearer_token>"
+	"twitter_bearer_token: "<twitter_bearer_token>",
+	"list_id": "<list_id_go_guage_sentiment_on>"
 }
