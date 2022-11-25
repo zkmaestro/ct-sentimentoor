@@ -1,4 +1,5 @@
 {
+	"log_level": "info",
 	"twitter_bearer_token: "<twitter_bearer_token>",
 	"twitter_list_id": "<list_id_go_guage_sentiment_on>",
 	"twitter_user_id": "<user_id_to_guage_sentiment_on_their_follows>"
