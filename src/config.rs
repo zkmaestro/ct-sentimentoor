@@ -9,6 +9,7 @@ const CONFIG_FILE: &str = "./sentimentoor.json";
 pub struct Config {
     pub twitter_bearer_token : String,
     pub twitter_list_id : String,
+    pub twitter_user_id : String,
 }
 
 impl Config {
