@@ -28,8 +28,13 @@ pub struct APIResponseMeta {
 
 #[derive(Deserialize, Debug)]
 pub struct APIResponse<T> {
+		#[serde(default = "default_api_response_data")]
     pub data: Vec<T>,
 		pub meta: APIResponseMeta,
+}
+
+fn default_api_response_data<T>() -> Vec<T> {
+    vec![]
 }
 
 /**
